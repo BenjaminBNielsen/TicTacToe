@@ -24,6 +24,10 @@ public class Game {
         this.name = name;
         board = new Board();
     }
+    
+    public Game(){
+        board = new Board();
+    }
 
     /**
      * Denne metode håndterer logikken for at placere en knap på spillepladen.
@@ -129,6 +133,14 @@ public class Game {
 
     public void setPlayers(Player[] players) {
         this.players = players;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
     }
 
 }
