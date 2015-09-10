@@ -10,5 +10,19 @@ package tictactoe.model;
  * @author Benjamin
  */
 public class Piece {
+    private int type;
+
+    public Piece(int type) {
+        this.type = type;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+    
     
 }

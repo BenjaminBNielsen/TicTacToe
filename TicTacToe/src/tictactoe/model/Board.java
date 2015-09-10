@@ -10,5 +10,29 @@ package tictactoe.model;
  * @author Benjamin
  */
 public class Board {
+    private int state;
+    private Piece[] pieces = new Piece[9];
+
+    public Board() {
+        state = 0;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public Piece[] getPieces() {
+        return pieces;
+    }
+
+    public void setPieces(Piece[] pieces) {
+        this.pieces = pieces;
+    }
+    
+    
     
 }
