@@ -5,8 +5,10 @@
  */
 package tictactoe.boardView;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 /**
@@ -16,12 +18,25 @@ import javafx.fxml.Initializable;
  */
 public class BoardControl implements Initializable {
 
+    public BoardControl() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("board_view.fxml"));
+
+        fxmlLoader.setController(this);
+        fxmlLoader.setRoot(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }
