@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Benjamin
  */
 public class Player {
+
     private String ipAddress;
     private String name;
     private int wonGames;
@@ -62,6 +63,8 @@ public class Player {
     public void setLostGames(int lostGames) {
         this.lostGames = lostGames;
     }
-    
-    
+
+    public void addPiece(Piece toPlace) {
+    }
+
 }

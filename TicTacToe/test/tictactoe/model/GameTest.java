@@ -5,7 +5,6 @@
  */
 package tictactoe.model;
 
-import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -14,7 +13,7 @@ import org.junit.Test;
  * @author Benjamin
  */
 public class GameTest {
-    
+
     public GameTest() {
     }
 
@@ -26,7 +25,7 @@ public class GameTest {
         Game game = new Game(null, null);
         Player p1 = new Player("Olga", "");
         Player p2 = new Player("Jens", "");
-        game.setPlayers(new Player[]{p1,p2});
+        game.setPlayers(new Player[]{p1, p2});
         game.placePiece(0);
         game.placePiece(3);
         game.placePiece(1);
@@ -34,67 +33,59 @@ public class GameTest {
         Player actualWinner = game.placePiece(2);
         Player expectedWinner = p1;
         assertEquals("Den forventede vinder vandt ikke ved en række: ", expectedWinner, actualWinner);
-        
-        
     }
+
     /**
-     * 
+     * Tester første mulige vertikale win condition.
      */
     @Test
-    public void testSecondHWin() {
+    public void testVerticalWin() {
+        Game game = new Game(null, null);
+        Player p1 = new Player("Olga", "");
+        Player p2 = new Player("Jens", "");
+        game.setPlayers(new Player[]{p1, p2});
+        game.placePiece(0);
+        game.placePiece(1);
+        game.placePiece(3);
+        game.placePiece(2);
+        Player actualWinner = game.placePiece(6);
+        Player expectedWinner = p1;
+        assertEquals("Den forventede vinder vandt ikke ved en række: ", expectedWinner, actualWinner);
     }
+
     /**
-     * 
+     * Tester venstre diagonale win condition.
      */
     @Test
-    public void testThirdHWin() {
-    }
-    @Test
-    public void testFirstVWin() {
-    }
-    @Test
-    public void testSecodVWin() {
-    }
-    @Test
-    public void testThirdVWin() {
-    }
-    @Test
-    public void testLeftDiagWin() {
-    }
-    @Test
-    public void testRightDiagWin() {
+    public void testLeftDiagonalWin() {
+        Game game = new Game(null, null);
+        Player p1 = new Player("Olga", "");
+        Player p2 = new Player("Jens", "");
+        game.setPlayers(new Player[]{p1, p2});
+        game.placePiece(0);
+        game.placePiece(1);
+        game.placePiece(4);
+        game.placePiece(2);
+        Player actualWinner = game.placePiece(8);
+        Player expectedWinner = p1;
+        assertEquals("Den forventede vinder vandt ikke ved en række: ", expectedWinner, actualWinner);
     }
 
+    /**
+     * Tester venstre diagonale win condition.
+     */
     @Test
-    public void testGetDate() {
+    public void testRightDiagonalWin() {
+        Game game = new Game(null, null);
+        Player p1 = new Player("Olga", "");
+        Player p2 = new Player("Jens", "");
+        game.setPlayers(new Player[]{p1, p2});
+        game.placePiece(2);
+        game.placePiece(0);
+        game.placePiece(4);
+        game.placePiece(1);
+        Player actualWinner = game.placePiece(6);
+        Player expectedWinner = p1;
+        assertEquals("Den forventede vinder vandt ikke ved en række: ", expectedWinner, actualWinner);
     }
-
-    @Test
-    public void testSetDate() {
-    }
-
-    @Test
-    public void testGetName() {
-    }
-
-    @Test
-    public void testSetName() {
-    }
-
-    @Test
-    public void testGetBoard() {
-    }
-
-    @Test
-    public void testSetBoard() {
-    }
-
-    @Test
-    public void testGetPlayers() {
-    }
-
-    @Test
-    public void testSetPlayers() {
-    }
-    
 }

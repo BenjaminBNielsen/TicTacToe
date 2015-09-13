@@ -36,5 +36,19 @@ public class Board {
     public void setPieces(Piece[] pieces) {
         this.pieces = pieces;
     }
+    
+    /**
+     * Returns the index of the given Piece object in the array.
+     * @param piece The piece to look for.
+     * @return the index of the given piece, or -1 if not there.
+     */
+    public int indexOf(Piece piece){
+        for (int i = 0; i < pieces.length; i++) {
+            if(pieces[i].equals(piece)){
+                return i;
+            }
+        }
+        return -1;
+    }
 
 }

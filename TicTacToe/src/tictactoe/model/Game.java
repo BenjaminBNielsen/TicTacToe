@@ -5,6 +5,7 @@
  */
 package tictactoe.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -18,46 +19,54 @@ public class Game {
     private Board board;
     private Player[] players = new Player[2];
     private int turn = 1;
+    private boolean hasWinner = false;
 
     public Game(Date date, String name) {
         this.date = date;
         this.name = name;
         board = new Board();
     }
-    
-    public Game(){
+
+    public Game() {
         board = new Board();
     }
 
     /**
-     * Denne metode håndterer logikken for at placere en knap på spillepladen.
-     * Klienten vil tilgå denne metode når der skal placeres en knap.
+     * Denne metode håndterer logikken for at placere en knap på spillepladen. Klienten vil tilgå denne metode når der skal placeres en knap.
      *
      * @param spot den plads hvorpå spillebrikken skal placeres.
-     * @return vinderen af spillet, eller null hvis der endnu ikke er nogen
-     * vinder.
+     * @return vinderen af spillet, eller null hvis der endnu ikke er nogen vinder.
      */
     public Player placePiece(int spot) {
-        Piece toPlace = new Piece(turn);
-        int playersTurn = (turn == 1) ? 0 : 1;
-        players[playersTurn].getPlacedPieces().add(toPlace);
-        if (board.getPieces()[spot].getType() == 0) {
-            board.getPieces()[spot] = toPlace;
-            Player winner = checkWin();
-            if (winner != null) {
-                return winner;
+        if (!hasWinner) {
+            Piece toPlace = new Piece(turn);
+            int playersTurn = (turn == 1) ? 0 : 1;
+            maxThreeControl(players[playersTurn].getPlacedPieces(), toPlace);
+            if (board.getPieces()[spot].getType() == 0) {
+                board.getPieces()[spot] = toPlace;
+                Player winner = checkWin();
+                if (winner != null) {
+                    hasWinner = true;
+                    return winner;
+                }
+                swapTurn();
             }
-            swapTurn();
         }
         return null;
     }
 
+    private void maxThreeControl(ArrayList<Piece> pieces, Piece toPlace) {
+        if(pieces.size() < 3){
+            pieces.add(toPlace);
+        }else{
+            board.getPieces()[board.indexOf(pieces.get(0))] = new Piece(0);
+            pieces.remove(0);
+            pieces.add(toPlace);
+        }
+    }
+
     /**
-     * Flipper turen sådan at hvis den før var 3 er den nu 1 og omvendt. Der
-     * bruges 1 og 3 fordi at de skal være ulige i forhold til hinanden for at
-     * win conditions ikke skal kunne fejle. Hvis de var 1 og 2 ville 0+1+2 give
-     * 3 og dermed vinde spillet, selvom det i virkeligheden var en tom plads,
-     * et kryds og en bolle.
+     * Flipper turen sådan at hvis den før var 3 er den nu 1 og omvendt. Der bruges 1 og 3 fordi at de skal være ulige i forhold til hinanden for at win conditions ikke skal kunne fejle. Hvis de var 1 og 2 ville 0+1+2 give 3 og dermed vinde spillet, selvom det i virkeligheden var en tom plads, et kryds og en bolle.
      */
     private void swapTurn() {
         turn = (turn == 1) ? 5 : 1;
@@ -65,23 +74,13 @@ public class Game {
     }
 
     /**
-     * Tjekker om det foretagne træk har afsluttet spillet. Hvis det har vil der
-     * sendes en pakke til begge spillere.
+     * Tjekker om det foretagne træk har afsluttet spillet. Hvis det har vil der sendes en pakke til begge spillere.
      *
      * @return spilleren der har vundet.
      */
     private Player checkWin() {
         Piece[] pieces = board.getPieces();
-        //PRINT BOARDET UD
-        for (int i = 0; i < pieces.length; i++) {
-            System.out.print(pieces[i].getType());
-            if(i == 2 || i==5){
-                System.out.println("");
-            }
-        }
-        System.out.println("");
-        
-        
+
         int[] logicSums = new int[8];
         //tjek horisontale rækker
         logicSums[0] = pieces[0].getType() + pieces[1].getType() + pieces[2].getType();
@@ -101,6 +100,13 @@ public class Game {
             }
         }
         return null;
+    }
+
+    /**
+     * Contains the behaviour for ending a game.
+     */
+    private void endGame() {
+
     }
 
     public Date getDate() {
