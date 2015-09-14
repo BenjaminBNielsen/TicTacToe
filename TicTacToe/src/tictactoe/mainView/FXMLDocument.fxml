@@ -12,16 +12,11 @@
    <top>
       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-            <Button mnemonicParsing="false" text="Home" />
-          <Button mnemonicParsing="false" text="Load Game" />
-            <Button mnemonicParsing="false" text="Save Game" />
-            <Button mnemonicParsing="false" text="Search" />
-            <Button mnemonicParsing="false" text="Statistic" />
-            <Button mnemonicParsing="false" onAction="#toHome" text="Startside" />
+            <Button mnemonicParsing="false" onAction="#toHome" text="Home" />
           <Button mnemonicParsing="false" onAction="#loadGame" text="Load Game" />
             <Button mnemonicParsing="false" onAction="#saveGame" text="Save Game" />
             <Button mnemonicParsing="false" onAction="#search" text="Search" />
-            <Button mnemonicParsing="false" onAction="#statistic" text="Statistik" />
+            <Button mnemonicParsing="false" onAction="#statistic" text="Statistic" />
         </items>
       </ToolBar>
    </top>
