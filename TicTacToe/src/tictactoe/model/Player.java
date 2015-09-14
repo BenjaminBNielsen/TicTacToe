@@ -12,13 +12,16 @@ import java.util.ArrayList;
  * @author Benjamin
  */
 public class Player {
+
+    private String ipAddress;
     private String name;
     private int wonGames;
     private int lostGames;
     private ArrayList<Piece> placedPieces = new ArrayList<>();
 
-    public Player(String name) {
+    public Player(String name, String ipAddress) {
         this.name = name;
+        this.ipAddress = ipAddress;
     }
 
     public ArrayList<Piece> getPlacedPieces() {
@@ -28,8 +31,14 @@ public class Player {
     public void setPlacedPieces(ArrayList<Piece> placedPieces) {
         this.placedPieces = placedPieces;
     }
-    
-    
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
 
     public String getName() {
         return name;
@@ -54,6 +63,8 @@ public class Player {
     public void setLostGames(int lostGames) {
         this.lostGames = lostGames;
     }
-    
-    
+
+    public void addPiece(Piece toPlace) {
+    }
+
 }
