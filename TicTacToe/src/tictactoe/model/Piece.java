@@ -10,6 +10,7 @@ package tictactoe.model;
  * @author Benjamin
  */
 public class Piece {
+
     private int type;
 
     public Piece(int type) {
@@ -23,6 +24,9 @@ public class Piece {
     public void setType(int type) {
         this.type = type;
     }
-    
-    
+
+    public String getVisualType() {
+        return (type == 1) ? "X" : (type == 5)? "O" : "";
+    }
+
 }

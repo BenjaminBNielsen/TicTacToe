@@ -41,8 +41,8 @@ public class Game {
         if (!hasWinner) {
             Piece toPlace = new Piece(turn);
             int playersTurn = (turn == 1) ? 0 : 1;
-            maxThreeControl(players[playersTurn].getPlacedPieces(), toPlace);
             if (board.getPieces()[spot].getType() == 0) {
+                maxThreeControl(players[playersTurn].getPlacedPieces(), toPlace);
                 board.getPieces()[spot] = toPlace;
                 Player winner = checkWin();
                 if (winner != null) {
@@ -55,6 +55,14 @@ public class Game {
         return null;
     }
 
+    /**
+     * Denne metode sikrer at brikken der skal placeres bliver placeret, og at hvis
+     * den spilleren hvis tur det er sætter sin fjerde brik, bliver den første
+     * han har sat fjernet.
+     * @param pieces Den turhavende spillers placerede brikker. Kald <code style="color:blue">
+     * player.getPlacedPieces()</code>.
+     * @param toPlace Den brik som den turhavende spiller ønsker at placere.
+     */
     private void maxThreeControl(ArrayList<Piece> pieces, Piece toPlace) {
         if(pieces.size() < 3){
             pieces.add(toPlace);
