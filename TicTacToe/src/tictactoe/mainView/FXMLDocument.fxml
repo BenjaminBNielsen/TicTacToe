@@ -14,7 +14,7 @@
         <items>
             <Button mnemonicParsing="false" onAction="#toHome" text="Home" />
           <Button mnemonicParsing="false" onAction="#loadGame" text="Load Game" />
-            <Button mnemonicParsing="false" onAction="#saveGame" text="Save Game" />
+            <Button mnemonicParsing="false" onAction="#saveMenu" text="Save Game" />
             <Button mnemonicParsing="false" onAction="#search" text="Search" />
             <Button mnemonicParsing="false" onAction="#statistic" text="Statistic" />
         </items>

@@ -91,4 +91,17 @@ public class GameControl extends BorderPane {
             buttons.get(i).setText("" + game.getBoard().getPieces()[i].getType());
         }
     }
+
+  public Player getPlayer1() {
+    return player1;
+  }
+
+  public Player getPlayer2() {
+    return player2;
+  }
+
+  public Game getGame() {
+    return game;
+  }
+    
 }
