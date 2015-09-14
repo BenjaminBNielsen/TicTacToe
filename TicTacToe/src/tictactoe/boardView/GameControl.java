@@ -88,7 +88,7 @@ public class GameControl extends BorderPane {
      */
     private void updateBoard() {
         for (int i = 0; i < buttons.size(); i++) {
-            buttons.get(i).setText("" + game.getBoard().getPieces()[i].getType());
+            buttons.get(i).setText(game.getBoard().getPieces()[i].getVisualType());
         }
     }
 }
