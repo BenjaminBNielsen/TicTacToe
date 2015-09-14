@@ -12,11 +12,11 @@
    <top>
       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-            <Button mnemonicParsing="false" text="Startside" />
-          <Button mnemonicParsing="false" text="Load Game" />
-            <Button mnemonicParsing="false" text="Save Game" />
-            <Button mnemonicParsing="false" text="Search" />
-            <Button mnemonicParsing="false" text="Statistik" />
+            <Button mnemonicParsing="false" onAction="#toHome" text="Home" />
+          <Button mnemonicParsing="false" onAction="#loadGame" text="Load Game" />
+            <Button mnemonicParsing="false" onAction="#saveGame" text="Save Game" />
+            <Button mnemonicParsing="false" onAction="#search" text="Search" />
+            <Button mnemonicParsing="false" onAction="#statistic" text="Statistic" />
         </items>
       </ToolBar>
    </top>
@@ -36,7 +36,7 @@
                   <Insets />
                </GridPane.margin></Button>
             <Button alignment="CENTER" mnemonicParsing="false" text="Load Game" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <Label text="Velkommen til TicTacToe" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label text="Welcome to TicTacToe" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="34.0" />
                </font></Label>

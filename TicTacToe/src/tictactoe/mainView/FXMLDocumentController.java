@@ -45,4 +45,29 @@ public class FXMLDocumentController extends BorderPane implements Initializable 
         this.setCenter(gc);
     }
     
+    @FXML
+    private void toHome(ActionEvent event) {
+      FXMLDocumentController dc = new FXMLDocumentController();
+      this.setCenter(dc.getCenter());
+    }
+    
+    @FXML
+    private void loadGame(ActionEvent event) {
+      
+    }
+    
+    @FXML
+    private void saveGame(ActionEvent event) {
+      
+    }
+    
+    @FXML
+    private void search(ActionEvent event) {
+      
+    }
+    
+    @FXML
+    private void statistic(ActionEvent event) {
+      
+    }
 }
