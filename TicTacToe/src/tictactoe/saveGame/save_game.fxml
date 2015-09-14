@@ -35,7 +35,7 @@
          <children>
             <TableView fx:id="saveTable" onMouseClicked="#useText">
               <columns>
-                <TableColumn minWidth="100.0" prefWidth="-1.0" text="Name" />
+                <TableColumn fx:id="gameName" minWidth="100.0" prefWidth="-1.0" text="Name" />
                 <TableColumn minWidth="100.0" prefWidth="-1.0" text="Player 1" />
                   <TableColumn minWidth="100.0" prefWidth="-1.0" text="Player 2" />
                   <TableColumn minWidth="100.0" prefWidth="-1.0" text="Time" />

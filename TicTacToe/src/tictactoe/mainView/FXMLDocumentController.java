@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
 import tictactoe.boardView.GameControl;
+import tictactoe.loadGame.Load_gameController;
 import tictactoe.saveGame.Save_gameController;
 
 /**
@@ -59,7 +60,8 @@ public class FXMLDocumentController extends BorderPane implements Initializable 
 
   @FXML
   private void loadGame(ActionEvent event) {
-
+    Load_gameController lgc = new Load_gameController(this);
+    this.setCenter(lgc);
   }
 
   @FXML

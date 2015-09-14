@@ -29,6 +29,10 @@ public class Board {
         this.state = state;
     }
 
+    public void setPiece(Piece piece, int index) {
+      this.pieces[index] = piece;
+    }
+    
     public Piece[] getPieces() {
         return pieces;
     }

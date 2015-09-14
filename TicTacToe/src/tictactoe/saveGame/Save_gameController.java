@@ -80,11 +80,10 @@ public class Save_gameController extends BorderPane {
     Piece[] pieces = dc.getGc().getGame().getBoard().getPieces();
     try {
       String fileName = nameField.getText() + ".txt";
-      File file = new File(fileName);
+      File file = new File("C:\\Users\\Andreas\\Documents\\NetBeansProjects\\TicTacToe\\TicTacToe\\saved games" + fileName);
       PrintWriter pw = new PrintWriter(file);
-      pw.println("Player 1: " + player1);
-      pw.println("Player 2: " + player2);
-      pw.println("Placering: ");
+      pw.println(player1);
+      pw.println(player2);
 
       for (int i = 0; i < pieces.length; i++) {
         pw.println(pieces[i].getType());
