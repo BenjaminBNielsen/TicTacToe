@@ -5,19 +5,20 @@
  */
 package tictactoe.loadGame;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Scanner;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.layout.BorderPane;
-import javax.swing.table.TableColumn;
+import javafx.util.Callback;
 import tictactoe.boardView.GameControl;
 import tictactoe.mainView.FXMLDocumentController;
 import tictactoe.model.Piece;
@@ -31,9 +32,9 @@ public class Load_gameController extends BorderPane {
 
   private FXMLDocumentController dc;
   @FXML
-  private TableView tableLoad;
+  private TableView table;
   @FXML
-  private TableColumn gameName;
+  private TableColumn<File,String> gameName;
 
   /**
    * Initializes the controller class.
@@ -43,28 +44,29 @@ public class Load_gameController extends BorderPane {
 
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
-
+    try {
+      fxmlLoader.load();
+    } catch (IOException ex) {
+      System.out.println("IOException: " + ex.getMessage());
+      System.out.println(Arrays.toString(ex.getStackTrace()));
+    }
     this.dc = dc;
 
     loadFiles();
 
-    try {
-      fxmlLoader.load();
-    } catch (IOException ex) {
-      System.out.println(ex.getMessage());
-    }
+
   }
 
   @FXML
-  private void loadButton(ActionEvent event) {
-    String[] params = loadGame();
+  private void loadGame(ActionEvent event) {
+    String[] params = showGame();
     GameControl gc = new GameControl();
     gc.getGame().getPlayers()[0].setName(params[0]);
     gc.getGame().getPlayers()[1].setName(params[1]);
-    for (int i = 2; i < params.length; i++) {
-      gc.getGame().getBoard().setPiece(new Piece(Integer.parseInt(params[i])), i);
+    for (int i = 2; i < params.length; i++) {      
+//      gc.getGame().getBoard().setPiece(new Piece(Integer.parseInt(params[i])), i);
     }
-
+    
     this.setCenter(gc);
   }
 
@@ -73,8 +75,8 @@ public class Load_gameController extends BorderPane {
     this.setCenter(dc.getCenter());
   }
 
-  private String[] loadGame() {
-    String fileName = tableLoad.getSelectionModel().getSelectedItem().toString();
+  private String[] showGame() {
+    String fileName = table.getSelectionModel().getSelectedItem().toString();
 
     String[] params = new String[10];
     Scanner scan = new Scanner(fileName);
@@ -89,17 +91,21 @@ public class Load_gameController extends BorderPane {
   }
 
   private void loadFiles() {
-    try {
-      Files.walk(Paths.get("C:\\Users\\Andreas\\Documents\\NetBeansProjects\\TicTacToe\\TicTacToe\\saved games")).forEach(filePath -> {
-        if (Files.isRegularFile(filePath)) {
-          ObservableList files = FXCollections.observableArrayList(filePath);
-          tableLoad.setItems(files);
-        
-        }
-      });
-    } catch (IOException ex) {
-      System.out.println("Fejl under indlæsning " + ex.getMessage());
+    File dir = new File("C:\\Users\\Andreas\\Documents\\NetBeansProjects\\TicTacToe\\TicTacToe\\saved games\\");
+    System.out.println("Mappe: " + dir.toString());
+    File[] files = dir.listFiles();
+    System.out.println("Filer: " + Arrays.toString(files));
+    for (int i = 0; i < files.length; i++) {
+      System.out.println("Fil: " + files[i]);
+      table.getItems().add(files[i]);
+//      gameName.setCellValueFactory((CellDataFeatures<File, String> p) ->  new SimpleStringProperty(p.getValue().getValue().toString()));
+//      gameName.setCellValueFactory(new Callback<CellDataFeatures<File>, ObservableValue<String>>() {
+//     @Override
+//     public ObservableValue<String> call(CellDataFeatures<File> p) {
+//         // p.getValue() returns the Person instance for a particular TableView row
+//         return new SimpleStringProperty(p.getValue().getValue().toString());
+//     }
+//  });
     }
   }
-
 }
