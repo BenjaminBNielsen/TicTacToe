@@ -5,9 +5,7 @@
  */
 package tictactoe.mainView;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import tictactoe.boardView.GameControl;
 import tictactoe.loadGame.Load_gameController;
 import tictactoe.saveGame.Save_gameController;
@@ -27,6 +26,9 @@ public class FXMLDocumentController extends BorderPane implements Initializable 
 
   private GameControl gc;
   private Save_gameController sgc;
+  private Load_gameController lgc;
+  @FXML
+  private GridPane homeScreen;
 
   public FXMLDocumentController() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
@@ -45,6 +47,8 @@ public class FXMLDocumentController extends BorderPane implements Initializable 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     gc = new GameControl();
+    sgc = new Save_gameController(this);
+    lgc = new Load_gameController(this);
   }
 
   @FXML
@@ -54,19 +58,16 @@ public class FXMLDocumentController extends BorderPane implements Initializable 
 
   @FXML
   private void toHome(ActionEvent event) {
-    FXMLDocumentController dc = new FXMLDocumentController();
-    this.setCenter(dc.getCenter());
+    this.setCenter(homeScreen);
   }
 
   @FXML
-  private void loadGame(ActionEvent event) {
-    Load_gameController lgc = new Load_gameController(this);
+  private void loadMenu(ActionEvent event) {
     this.setCenter(lgc);
   }
 
   @FXML
   private void saveMenu(ActionEvent event) {
-    Save_gameController sgc = new Save_gameController(this);
     this.setCenter(sgc);
   }
 
